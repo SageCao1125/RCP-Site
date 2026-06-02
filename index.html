@@ -23,7 +23,26 @@
       </div>
     </div>
   </nav>
-  <header id="hero"><!-- Task 5 --></header>
+  <header id="hero">
+    <canvas id="cascade" aria-hidden="true"></canvas>
+    <div class="clouds" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="hero-content wrap">
+      <span class="eyebrow hero-pill">CoRL 2026</span>
+      <h1>Unrolling the Action Manifold</h1>
+      <p class="hero-sub">Visuomotor Policy Learning via Recursive Cascades</p>
+      <p class="hero-hook">A 19M-parameter policy that sketches global motion from sparse anchors, then recursively fills in the details — decoded in parallel.</p>
+      <div class="hero-cta">
+        <a class="btn btn--primary" href="static/paper.pdf" target="_blank" rel="noopener">📄 Paper</a>
+        <a class="btn btn--ghost" href="#" title="Code coming soon">⟨ ⟩ Code</a>
+        <a class="hero-demo" href="#videos">▶ Watch demo</a>
+      </div>
+      <p class="hero-authors">Anonymous Authors · Under review at CoRL 2026</p>
+      <ul class="hero-chips">
+        <li><b>19M</b> params</li><li><b>93%</b> ManiSkill</li><li><b>58%</b> real-world</li><li><b>55 Hz</b> throughput</li>
+      </ul>
+    </div>
+    <a class="scroll-cue" href="#intro" aria-label="Scroll down">⌄</a>
+  </header>
   <main>
     <section id="intro" class="section"><!-- Task 6 --></section>
     <section id="stats" class="section section--tint"><!-- Task 7 --></section>
