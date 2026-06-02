@@ -36,3 +36,63 @@ echo "  figure: robot_setup.png"
 echo "== Paper PDF =="
 cp "$ROOT/_CoRL_2026__Recursive_Cascade_Policy.pdf" "$HERE/static/paper.pdf"
 echo "  paper.pdf copied"
+
+echo "== Videos =="
+SRC_VID="$ROOT/real_world_videos"
+OUT_VID="$HERE/static/videos"
+mkdir -p "$OUT_VID/posters"
+
+# method out_key|source_subdir|Label
+METHODS=(
+  "rcp|fracpolicy|RCP (Ours)"
+  "act|act/act|ACT"
+  "dp|dp/dp|Diffusion Policy"
+  "carp|carp/carp|CARP"
+)
+# task out_key|source_subdir|Label
+TASKS=(
+  "stack_bowl|run_stack_bowl|Stack Bowl"
+  "transfer_tape|run_packaging_tape|Transfer Tape"
+  "weigh_apple|run_pick_up_weigh|Weigh Apple"
+  "open_drawer|run_open_drawers|Open Drawer"
+)
+
+MANIFEST="$OUT_VID/manifest.json"
+echo "{" > "$MANIFEST"
+echo '  "methods": {"rcp":"RCP (Ours)","act":"ACT","dp":"Diffusion Policy","carp":"CARP"},' >> "$MANIFEST"
+echo '  "tasks": {"stack_bowl":"Stack Bowl","transfer_tape":"Transfer Tape","weigh_apple":"Weigh Apple","open_drawer":"Open Drawer"},' >> "$MANIFEST"
+echo '  "clips": [' >> "$MANIFEST"
+first=1
+for m in "${METHODS[@]}"; do
+  IFS='|' read -r mkey msub mlabel <<< "$m"
+  for t in "${TASKS[@]}"; do
+    IFS='|' read -r tkey tsub tlabel <<< "$t"
+    srcdir="$SRC_VID/$msub/$tsub"
+    [ -d "$srcdir" ] || { echo "  MISSING dir: $srcdir"; continue; }
+    for oc in "success|成功" "fail|失败"; do
+      IFS='|' read -r ockey occn <<< "$oc"
+      src=$(ls "$srcdir/${occn}"*.mp4 2>/dev/null | sort -V | head -n1 || true)
+      if [ -z "$src" ]; then
+        echo "  NO CLIP: $mkey/$tkey/$ockey (none available)"
+        continue
+      fi
+      mkdir -p "$OUT_VID/$mkey/$tkey"
+      dst="$OUT_VID/$mkey/$tkey/${ockey}_1.mp4"
+      ffmpeg -y -v error -i "$src" -vf "scale=-2:'min(540,ih)'" \
+        -c:v libx264 -crf 24 -preset veryfast -an -movflags +faststart "$dst"
+      poster="$OUT_VID/posters/${mkey}_${tkey}_${ockey}.jpg"
+      ffmpeg -y -v error -ss 1 -i "$dst" -frames:v 1 -q:v 4 "$poster" || \
+        ffmpeg -y -v error -i "$dst" -frames:v 1 -q:v 4 "$poster"
+      relsrc="videos/$mkey/$tkey/${ockey}_1.mp4"
+      relposter="videos/posters/${mkey}_${tkey}_${ockey}.jpg"
+      [ $first -eq 1 ] && first=0 || echo "," >> "$MANIFEST"
+      printf '    {"method":"%s","task":"%s","outcome":"%s","src":"%s","poster":"%s"}' \
+        "$mkey" "$tkey" "$ockey" "$relsrc" "$relposter" >> "$MANIFEST"
+      echo "  clip: $mkey/$tkey/$ockey"
+    done
+  done
+done
+echo "" >> "$MANIFEST"
+echo "  ]" >> "$MANIFEST"
+echo "}" >> "$MANIFEST"
+echo "== manifest written: $MANIFEST =="
