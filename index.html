@@ -44,7 +44,19 @@
     <a class="scroll-cue" href="#intro" aria-label="Scroll down">⌄</a>
   </header>
   <main>
-    <section id="intro" class="section"><!-- Task 6 --></section>
+    <section id="intro" class="section">
+      <div class="wrap intro-grid">
+        <div class="reveal">
+          <span class="eyebrow">The idea in one breath</span>
+          <h2>Sketch globally, refine recursively.</h2>
+          <p class="lead">Robot policies usually trade speed for stability — autoregressive models are slow and drift over time, diffusion models are accurate but expensive. <b>RCP</b> borrows from how the brain plans movement: it first sketches a coarse trajectory from a few anchor points, then recursively fills in the gaps with one small, weight-shared Transformer. Because the in-between segments are independent, RCP decodes them in parallel — staying fast and stable with just <b>19M parameters</b>.</p>
+        </div>
+        <div class="reveal card abstract-card">
+          <h3>Abstract</h3>
+          <p>Current generative visuomotor policies often face a trade-off between inference speed and execution stability. Autoregressive architectures are constrained by sequential decoding latency and compounding errors, whereas diffusion models demand computationally expensive iterative denoising. We introduce the Recursive Cascade Policy (RCP), an architecture inspired by human hierarchical cognitive control that frames action generation as recursive temporal infilling directly within explicit physical action space. A single weight-shared Transformer first predicts sparse boundary anchors to sketch a global trajectory, then recursively populates the temporal gaps. By conditioning each step on its immediate geometric anchors and a hierarchically propagated latent, RCP renders intermediate trajectory segments conditionally independent. This structural prior restricts the attention mechanism to a constant-length context, decoupling attention complexity from the total action horizon and unlocking highly efficient parallel decoding. With only 19M parameters, less than one-quarter the size of ACT and Diffusion Policy, RCP achieves superior performance across diverse simulation and real-world tasks. By grounding generation in local geometric boundaries rather than unbounded histories, RCP maintains robust temporal coherence, demonstrating recursive cascades as an efficient and scalable approach for robotic policies.</p>
+        </div>
+      </div>
+    </section>
     <section id="stats" class="section section--tint"><!-- Task 7 --></section>
     <section id="method" class="section"><!-- Task 8 --></section>
     <section id="results" class="section section--tint"><!-- Task 9 --></section>
