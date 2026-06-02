@@ -1,34 +1,212 @@
 {
-  "methods": {"rcp":"RCP (Ours)","act":"ACT","dp":"Diffusion Policy","carp":"CARP"},
-  "tasks": {"stack_bowl":"Stack Bowl","transfer_tape":"Transfer Tape","weigh_apple":"Weigh Apple","open_drawer":"Open Drawer"},
+  "methods": {
+    "rcp": "RCP (Ours)",
+    "act": "ACT",
+    "dp": "Diffusion Policy",
+    "carp": "CARP"
+  },
+  "tasks": {
+    "stack_bowl": "Stack Bowl",
+    "transfer_tape": "Transfer Tape",
+    "weigh_apple": "Weigh Apple",
+    "open_drawer": "Open Drawer"
+  },
   "clips": [
-    {"method":"rcp","task":"stack_bowl","outcome":"success","src":"videos/rcp/stack_bowl/success_1.mp4","poster":"videos/posters/rcp_stack_bowl_success.jpg"},
-    {"method":"rcp","task":"transfer_tape","outcome":"success","src":"videos/rcp/transfer_tape/success_1.mp4","poster":"videos/posters/rcp_transfer_tape_success.jpg"},
-    {"method":"rcp","task":"weigh_apple","outcome":"success","src":"videos/rcp/weigh_apple/success_1.mp4","poster":"videos/posters/rcp_weigh_apple_success.jpg"},
-    {"method":"rcp","task":"weigh_apple","outcome":"fail","src":"videos/rcp/weigh_apple/fail_1.mp4","poster":"videos/posters/rcp_weigh_apple_fail.jpg"},
-    {"method":"rcp","task":"open_drawer","outcome":"success","src":"videos/rcp/open_drawer/success_1.mp4","poster":"videos/posters/rcp_open_drawer_success.jpg"},
-    {"method":"act","task":"stack_bowl","outcome":"success","src":"videos/act/stack_bowl/success_1.mp4","poster":"videos/posters/act_stack_bowl_success.jpg"},
-    {"method":"act","task":"stack_bowl","outcome":"fail","src":"videos/act/stack_bowl/fail_1.mp4","poster":"videos/posters/act_stack_bowl_fail.jpg"},
-    {"method":"act","task":"transfer_tape","outcome":"success","src":"videos/act/transfer_tape/success_1.mp4","poster":"videos/posters/act_transfer_tape_success.jpg"},
-    {"method":"act","task":"transfer_tape","outcome":"fail","src":"videos/act/transfer_tape/fail_1.mp4","poster":"videos/posters/act_transfer_tape_fail.jpg"},
-    {"method":"act","task":"weigh_apple","outcome":"fail","src":"videos/act/weigh_apple/fail_1.mp4","poster":"videos/posters/act_weigh_apple_fail.jpg"},
-    {"method":"act","task":"open_drawer","outcome":"success","src":"videos/act/open_drawer/success_1.mp4","poster":"videos/posters/act_open_drawer_success.jpg"},
-    {"method":"act","task":"open_drawer","outcome":"fail","src":"videos/act/open_drawer/fail_1.mp4","poster":"videos/posters/act_open_drawer_fail.jpg"},
-    {"method":"dp","task":"stack_bowl","outcome":"success","src":"videos/dp/stack_bowl/success_1.mp4","poster":"videos/posters/dp_stack_bowl_success.jpg"},
-    {"method":"dp","task":"stack_bowl","outcome":"fail","src":"videos/dp/stack_bowl/fail_1.mp4","poster":"videos/posters/dp_stack_bowl_fail.jpg"},
-    {"method":"dp","task":"transfer_tape","outcome":"success","src":"videos/dp/transfer_tape/success_1.mp4","poster":"videos/posters/dp_transfer_tape_success.jpg"},
-    {"method":"dp","task":"transfer_tape","outcome":"fail","src":"videos/dp/transfer_tape/fail_1.mp4","poster":"videos/posters/dp_transfer_tape_fail.jpg"},
-    {"method":"dp","task":"weigh_apple","outcome":"success","src":"videos/dp/weigh_apple/success_1.mp4","poster":"videos/posters/dp_weigh_apple_success.jpg"},
-    {"method":"dp","task":"weigh_apple","outcome":"fail","src":"videos/dp/weigh_apple/fail_1.mp4","poster":"videos/posters/dp_weigh_apple_fail.jpg"},
-    {"method":"dp","task":"open_drawer","outcome":"success","src":"videos/dp/open_drawer/success_1.mp4","poster":"videos/posters/dp_open_drawer_success.jpg"},
-    {"method":"dp","task":"open_drawer","outcome":"fail","src":"videos/dp/open_drawer/fail_1.mp4","poster":"videos/posters/dp_open_drawer_fail.jpg"},
-    {"method":"carp","task":"stack_bowl","outcome":"success","src":"videos/carp/stack_bowl/success_1.mp4","poster":"videos/posters/carp_stack_bowl_success.jpg"},
-    {"method":"carp","task":"stack_bowl","outcome":"fail","src":"videos/carp/stack_bowl/fail_1.mp4","poster":"videos/posters/carp_stack_bowl_fail.jpg"},
-    {"method":"carp","task":"transfer_tape","outcome":"success","src":"videos/carp/transfer_tape/success_1.mp4","poster":"videos/posters/carp_transfer_tape_success.jpg"},
-    {"method":"carp","task":"transfer_tape","outcome":"fail","src":"videos/carp/transfer_tape/fail_1.mp4","poster":"videos/posters/carp_transfer_tape_fail.jpg"},
-    {"method":"carp","task":"weigh_apple","outcome":"success","src":"videos/carp/weigh_apple/success_1.mp4","poster":"videos/posters/carp_weigh_apple_success.jpg"},
-    {"method":"carp","task":"weigh_apple","outcome":"fail","src":"videos/carp/weigh_apple/fail_1.mp4","poster":"videos/posters/carp_weigh_apple_fail.jpg"},
-    {"method":"carp","task":"open_drawer","outcome":"success","src":"videos/carp/open_drawer/success_1.mp4","poster":"videos/posters/carp_open_drawer_success.jpg"},
-    {"method":"carp","task":"open_drawer","outcome":"fail","src":"videos/carp/open_drawer/fail_1.mp4","poster":"videos/posters/carp_open_drawer_fail.jpg"}
+    {
+      "method": "rcp",
+      "task": "stack_bowl",
+      "outcome": "success",
+      "src": "static/videos/rcp/stack_bowl/success_1.mp4",
+      "poster": "static/videos/posters/rcp_stack_bowl_success.jpg"
+    },
+    {
+      "method": "rcp",
+      "task": "transfer_tape",
+      "outcome": "success",
+      "src": "static/videos/rcp/transfer_tape/success_1.mp4",
+      "poster": "static/videos/posters/rcp_transfer_tape_success.jpg"
+    },
+    {
+      "method": "rcp",
+      "task": "weigh_apple",
+      "outcome": "success",
+      "src": "static/videos/rcp/weigh_apple/success_1.mp4",
+      "poster": "static/videos/posters/rcp_weigh_apple_success.jpg"
+    },
+    {
+      "method": "rcp",
+      "task": "weigh_apple",
+      "outcome": "fail",
+      "src": "static/videos/rcp/weigh_apple/fail_1.mp4",
+      "poster": "static/videos/posters/rcp_weigh_apple_fail.jpg"
+    },
+    {
+      "method": "rcp",
+      "task": "open_drawer",
+      "outcome": "success",
+      "src": "static/videos/rcp/open_drawer/success_1.mp4",
+      "poster": "static/videos/posters/rcp_open_drawer_success.jpg"
+    },
+    {
+      "method": "act",
+      "task": "stack_bowl",
+      "outcome": "success",
+      "src": "static/videos/act/stack_bowl/success_1.mp4",
+      "poster": "static/videos/posters/act_stack_bowl_success.jpg"
+    },
+    {
+      "method": "act",
+      "task": "stack_bowl",
+      "outcome": "fail",
+      "src": "static/videos/act/stack_bowl/fail_1.mp4",
+      "poster": "static/videos/posters/act_stack_bowl_fail.jpg"
+    },
+    {
+      "method": "act",
+      "task": "transfer_tape",
+      "outcome": "success",
+      "src": "static/videos/act/transfer_tape/success_1.mp4",
+      "poster": "static/videos/posters/act_transfer_tape_success.jpg"
+    },
+    {
+      "method": "act",
+      "task": "transfer_tape",
+      "outcome": "fail",
+      "src": "static/videos/act/transfer_tape/fail_1.mp4",
+      "poster": "static/videos/posters/act_transfer_tape_fail.jpg"
+    },
+    {
+      "method": "act",
+      "task": "weigh_apple",
+      "outcome": "fail",
+      "src": "static/videos/act/weigh_apple/fail_1.mp4",
+      "poster": "static/videos/posters/act_weigh_apple_fail.jpg"
+    },
+    {
+      "method": "act",
+      "task": "open_drawer",
+      "outcome": "success",
+      "src": "static/videos/act/open_drawer/success_1.mp4",
+      "poster": "static/videos/posters/act_open_drawer_success.jpg"
+    },
+    {
+      "method": "act",
+      "task": "open_drawer",
+      "outcome": "fail",
+      "src": "static/videos/act/open_drawer/fail_1.mp4",
+      "poster": "static/videos/posters/act_open_drawer_fail.jpg"
+    },
+    {
+      "method": "dp",
+      "task": "stack_bowl",
+      "outcome": "success",
+      "src": "static/videos/dp/stack_bowl/success_1.mp4",
+      "poster": "static/videos/posters/dp_stack_bowl_success.jpg"
+    },
+    {
+      "method": "dp",
+      "task": "stack_bowl",
+      "outcome": "fail",
+      "src": "static/videos/dp/stack_bowl/fail_1.mp4",
+      "poster": "static/videos/posters/dp_stack_bowl_fail.jpg"
+    },
+    {
+      "method": "dp",
+      "task": "transfer_tape",
+      "outcome": "success",
+      "src": "static/videos/dp/transfer_tape/success_1.mp4",
+      "poster": "static/videos/posters/dp_transfer_tape_success.jpg"
+    },
+    {
+      "method": "dp",
+      "task": "transfer_tape",
+      "outcome": "fail",
+      "src": "static/videos/dp/transfer_tape/fail_1.mp4",
+      "poster": "static/videos/posters/dp_transfer_tape_fail.jpg"
+    },
+    {
+      "method": "dp",
+      "task": "weigh_apple",
+      "outcome": "success",
+      "src": "static/videos/dp/weigh_apple/success_1.mp4",
+      "poster": "static/videos/posters/dp_weigh_apple_success.jpg"
+    },
+    {
+      "method": "dp",
+      "task": "weigh_apple",
+      "outcome": "fail",
+      "src": "static/videos/dp/weigh_apple/fail_1.mp4",
+      "poster": "static/videos/posters/dp_weigh_apple_fail.jpg"
+    },
+    {
+      "method": "dp",
+      "task": "open_drawer",
+      "outcome": "success",
+      "src": "static/videos/dp/open_drawer/success_1.mp4",
+      "poster": "static/videos/posters/dp_open_drawer_success.jpg"
+    },
+    {
+      "method": "dp",
+      "task": "open_drawer",
+      "outcome": "fail",
+      "src": "static/videos/dp/open_drawer/fail_1.mp4",
+      "poster": "static/videos/posters/dp_open_drawer_fail.jpg"
+    },
+    {
+      "method": "carp",
+      "task": "stack_bowl",
+      "outcome": "success",
+      "src": "static/videos/carp/stack_bowl/success_1.mp4",
+      "poster": "static/videos/posters/carp_stack_bowl_success.jpg"
+    },
+    {
+      "method": "carp",
+      "task": "stack_bowl",
+      "outcome": "fail",
+      "src": "static/videos/carp/stack_bowl/fail_1.mp4",
+      "poster": "static/videos/posters/carp_stack_bowl_fail.jpg"
+    },
+    {
+      "method": "carp",
+      "task": "transfer_tape",
+      "outcome": "success",
+      "src": "static/videos/carp/transfer_tape/success_1.mp4",
+      "poster": "static/videos/posters/carp_transfer_tape_success.jpg"
+    },
+    {
+      "method": "carp",
+      "task": "transfer_tape",
+      "outcome": "fail",
+      "src": "static/videos/carp/transfer_tape/fail_1.mp4",
+      "poster": "static/videos/posters/carp_transfer_tape_fail.jpg"
+    },
+    {
+      "method": "carp",
+      "task": "weigh_apple",
+      "outcome": "success",
+      "src": "static/videos/carp/weigh_apple/success_1.mp4",
+      "poster": "static/videos/posters/carp_weigh_apple_success.jpg"
+    },
+    {
+      "method": "carp",
+      "task": "weigh_apple",
+      "outcome": "fail",
+      "src": "static/videos/carp/weigh_apple/fail_1.mp4",
+      "poster": "static/videos/posters/carp_weigh_apple_fail.jpg"
+    },
+    {
+      "method": "carp",
+      "task": "open_drawer",
+      "outcome": "success",
+      "src": "static/videos/carp/open_drawer/success_1.mp4",
+      "poster": "static/videos/posters/carp_open_drawer_success.jpg"
+    },
+    {
+      "method": "carp",
+      "task": "open_drawer",
+      "outcome": "fail",
+      "src": "static/videos/carp/open_drawer/fail_1.mp4",
+      "poster": "static/videos/posters/carp_open_drawer_fail.jpg"
+    }
   ]
 }

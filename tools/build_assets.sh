@@ -83,8 +83,8 @@ for m in "${METHODS[@]}"; do
       poster="$OUT_VID/posters/${mkey}_${tkey}_${ockey}.jpg"
       ffmpeg -y -v error -ss 1 -i "$dst" -frames:v 1 -q:v 4 "$poster" || \
         ffmpeg -y -v error -i "$dst" -frames:v 1 -q:v 4 "$poster"
-      relsrc="videos/$mkey/$tkey/${ockey}_1.mp4"
-      relposter="videos/posters/${mkey}_${tkey}_${ockey}.jpg"
+      relsrc="static/videos/$mkey/$tkey/${ockey}_1.mp4"
+      relposter="static/videos/posters/${mkey}_${tkey}_${ockey}.jpg"
       [ $first -eq 1 ] && first=0 || echo "," >> "$MANIFEST"
       printf '    {"method":"%s","task":"%s","outcome":"%s","src":"%s","poster":"%s"}' \
         "$mkey" "$tkey" "$ockey" "$relsrc" "$relposter" >> "$MANIFEST"
