@@ -25,7 +25,6 @@
     </div>
   </nav>
   <header id="hero">
-    <canvas id="cascade" aria-hidden="true"></canvas>
     <div class="clouds" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="hero-content wrap">
       <span class="eyebrow hero-pill">CoRL 2026</span>
@@ -42,9 +41,30 @@
         <li><b>19M</b> params</li><li><b>93%</b> ManiSkill</li><li><b>58%</b> real-world</li><li><b>55 Hz</b> throughput</li>
       </ul>
     </div>
-    <a class="scroll-cue" href="#intro" aria-label="Scroll down">⌄</a>
+    <a class="scroll-cue" href="#how" aria-label="Scroll down">⌄</a>
   </header>
   <main>
+    <section id="how" class="section">
+      <div class="wrap">
+        <div class="reveal" style="text-align:center">
+          <span class="eyebrow">How it works</span>
+          <h2>From observation to executed trajectory.</h2>
+          <p class="lead" style="margin:.6em auto 0">The shared generator turns the observation and its tokens into action latents — then reuses itself to instantiate the trajectory level by level.</p>
+        </div>
+        <div class="how-stage reveal">
+          <canvas id="arch-anim" role="img" aria-label="Animated diagram of the Recursive Cascade Policy: observations are encoded into tokens, the shared generator emits action latents, and the trajectory is built level by level."></canvas>
+          <img class="how-fallback" src="static/figures/architecture.png" alt="Architecture of the Recursive Cascade Policy." />
+          <ol class="how-steps" aria-hidden="true">
+            <li data-step="0"><b>Encode</b><span>observation → tokens</span></li>
+            <li data-step="1"><b>Generate</b><span>self- &amp; cross-attention</span></li>
+            <li data-step="2"><b>Level 0</b><span>global anchors</span></li>
+            <li data-step="3"><b>Infill</b><span>recurse on pairs</span></li>
+            <li data-step="4"><b>Execute</b><span>dense trajectory</span></li>
+          </ol>
+          <p class="how-caption" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
     <section id="intro" class="section">
       <div class="wrap intro-stack">
         <div class="reveal intro-lead">
@@ -200,7 +220,7 @@
     </div>
   </footer>
   <script type="module" src="js/nav.js"></script>
-  <script type="module" src="js/hero-cascade.js"></script>
+  <script type="module" src="js/how-it-works.js"></script>
   <script type="module" src="js/reveal.js"></script>
   <script type="module" src="js/video-compare.js"></script>
 </body>

@@ -48,7 +48,6 @@ img{max-width:100%;display:block}
 
 /* ===== Hero (Task 5) ===== */
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:linear-gradient(180deg,var(--sky-top),var(--sky-bot))}
-#cascade{position:absolute;inset:0;width:100%;height:100%}
 .clouds{position:absolute;inset:0;pointer-events:none}
 .clouds span{position:absolute;background:radial-gradient(closest-side,rgba(255,255,255,.9),rgba(255,255,255,0));border-radius:50%;filter:blur(6px);opacity:.7;animation:drift linear infinite}
 .clouds span:nth-child(1){width:420px;height:160px;top:18%;left:-30%;animation-duration:90s}
@@ -145,3 +144,18 @@ table.data tr.rcp-row td{color:var(--accent);font-weight:600}
 
 /* ===== Print polish ===== */
 @media print{ #nav{position:static;background:#fff;box-shadow:none} #hero{min-height:auto} }
+
+/* ===== How it works (animated architecture) ===== */
+.how-stage{margin-top:36px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(31,39,51,.05);padding:22px 22px 26px}
+#arch-anim{width:100%;max-width:960px;aspect-ratio:96/54;height:auto;display:block;margin:0 auto}
+.how-fallback{display:none;max-width:960px;margin:0 auto}
+.how-steps{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:0;margin:18px 0 0}
+.how-steps li{display:flex;flex-direction:column;align-items:center;gap:1px;padding:.5em 1em;border-radius:12px;border:1px solid rgba(31,39,51,.1);background:#fbfafa;min-width:120px;transition:all .3s ease}
+.how-steps li b{font-family:var(--serif);font-size:.95rem;color:var(--muted)}
+.how-steps li span{font-size:.74rem;color:var(--muted)}
+.how-steps li.active{background:var(--rose-light);border-color:var(--accent-2)}
+.how-steps li.active b{color:var(--accent)}
+.how-steps li.active span{color:var(--accent)}
+.how-caption{text-align:center;color:var(--muted);font-size:.95rem;margin:16px auto 0;max-width:70ch;min-height:2.6em}
+@media (prefers-reduced-motion: reduce){ #arch-anim{display:none} .how-fallback{display:block} .how-steps,.how-caption{display:none} }
+@media (max-width:560px){ .how-steps li{min-width:0;flex:1 1 40%} }
