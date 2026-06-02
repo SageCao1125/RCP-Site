@@ -5,9 +5,11 @@ Assumes Chrome is already running with --remote-debugging-port=9222.
 """
 import sys, json, base64, socket, struct, os, time, urllib.request, hashlib
 
+PORT = int(os.environ.get("CDP_PORT", "9222"))
+
 
 def http_get(path):
-    with urllib.request.urlopen(f"http://127.0.0.1:9222{path}", timeout=10) as r:
+    with urllib.request.urlopen(f"http://127.0.0.1:{PORT}{path}", timeout=10) as r:
         return json.load(r)
 
 

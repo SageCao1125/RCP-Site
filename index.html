@@ -14,7 +14,7 @@
 <body>
   <nav id="nav">
     <div class="nav-inner wrap">
-      <a class="brand" href="#hero">✦ RCP</a>
+      <a class="brand" href="#hero">✦ Recursive Cascade Policy</a>
       <div class="nav-links">
         <a href="#method">Method</a>
         <a href="#results">Results</a>
@@ -46,15 +46,15 @@
   </header>
   <main>
     <section id="intro" class="section">
-      <div class="wrap intro-grid">
-        <div class="reveal">
+      <div class="wrap intro-stack">
+        <div class="reveal intro-lead">
           <span class="eyebrow">The idea in one breath</span>
           <h2>Sketch globally, refine recursively.</h2>
           <p class="lead">Robot policies usually trade speed for stability — autoregressive models are slow and drift over time, diffusion models are accurate but expensive. <b>RCP</b> borrows from how the brain plans movement: it first sketches a coarse trajectory from a few anchor points, then recursively fills in the gaps with one small, weight-shared Transformer. Because the in-between segments are independent, RCP decodes them in parallel — staying fast and stable with just <b>19M parameters</b>.</p>
         </div>
         <div class="reveal card abstract-card">
           <h3>Abstract</h3>
-          <p>Current generative visuomotor policies often face a trade-off between inference speed and execution stability. Autoregressive architectures are constrained by sequential decoding latency and compounding errors, whereas diffusion models demand computationally expensive iterative denoising. We introduce the Recursive Cascade Policy (RCP), an architecture inspired by human hierarchical cognitive control that frames action generation as recursive temporal infilling directly within explicit physical action space. A single weight-shared Transformer first predicts sparse boundary anchors to sketch a global trajectory, then recursively populates the temporal gaps. By conditioning each step on its immediate geometric anchors and a hierarchically propagated latent, RCP renders intermediate trajectory segments conditionally independent. This structural prior restricts the attention mechanism to a constant-length context, decoupling attention complexity from the total action horizon and unlocking highly efficient parallel decoding. With only 19M parameters, less than one-quarter the size of ACT and Diffusion Policy, RCP achieves superior performance across diverse simulation and real-world tasks. By grounding generation in local geometric boundaries rather than unbounded histories, RCP maintains robust temporal coherence, demonstrating recursive cascades as an efficient and scalable approach for robotic policies.</p>
+          <p class="abstract-body">Current generative visuomotor policies often face a trade-off between inference speed and execution stability. Autoregressive architectures are constrained by sequential decoding latency and compounding errors, whereas diffusion models demand computationally expensive iterative denoising. We introduce the Recursive Cascade Policy (RCP), an architecture inspired by human hierarchical cognitive control that frames action generation as recursive temporal infilling directly within explicit physical action space. A single weight-shared Transformer first predicts sparse boundary anchors to sketch a global trajectory, then recursively populates the temporal gaps. By conditioning each step on its immediate geometric anchors and a hierarchically propagated latent, RCP renders intermediate trajectory segments conditionally independent. This structural prior restricts the attention mechanism to a constant-length context, decoupling attention complexity from the total action horizon and unlocking highly efficient parallel decoding. With only 19M parameters, less than one-quarter the size of ACT and Diffusion Policy, RCP achieves superior performance across diverse simulation and real-world tasks. By grounding generation in local geometric boundaries rather than unbounded histories, RCP maintains robust temporal coherence, demonstrating recursive cascades as an efficient and scalable approach for robotic policies.</p>
         </div>
       </div>
     </section>
@@ -90,9 +90,21 @@
           <li class="card reveal"><span class="step-n">3</span><h3>Recurse</h3><p>Each adjacent anchor pair becomes new start/end tokens; the same generator infills finer waypoints between them. Repeat to Level N.</p></li>
           <li class="card reveal"><span class="step-n">4</span><h3>Parallel decode</h3><p>Same-level segments are conditionally independent, so they're generated in one batched pass — O(L) latency, constant-length attention.</p></li>
         </ol>
+        <div class="reveal" style="text-align:center;margin-top:64px">
+          <span class="eyebrow">Looking inside the cascade</span>
+          <h2>What the recursion actually learns.</h2>
+        </div>
         <div class="reveal interp-grid">
-          <figure class="card"><img src="static/figures/hierarchy.png" alt="2D trajectory: sparse global anchors expand into a dense local path." loading="lazy"/><figcaption>Global anchors (rose) recursively expand into dense local actions (slate).</figcaption></figure>
-          <figure class="card"><img src="static/figures/latent_umap.png" alt="UMAP of latent actions showing global intents refining into dense local manifolds." loading="lazy"/><figcaption>UMAP of the latent space: global intents flow into dense local execution manifolds.</figcaption></figure>
+          <figure class="card interp-card">
+            <h3 class="interp-title">Hierarchical action instantiation</h3>
+            <p class="interp-text">A predicted trajectory unrolled across recursive levels. The model first places a few <b>sparse global anchors</b> (rose) that outline the macroscopic motion, then recursively infills <b>dense local actions</b> (slate) in the gaps between them — making the gist-to-detail refinement explicit in physical space.</p>
+            <img src="static/figures/hierarchy.png" alt="2D trajectory: sparse global anchors expand into a dense local path." loading="lazy"/>
+          </figure>
+          <figure class="card interp-card">
+            <h3 class="interp-title">Latent action space (UMAP)</h3>
+            <p class="interp-text">A UMAP projection of the generator's latents. Sparse <b>global-intent</b> nodes flow along a consistent refinement direction into the <b>dense manifold of local actions</b> (inset) — direct evidence that RCP progressively grounds high-level intent into precise, executable motion.</p>
+            <img src="static/figures/latent_umap.png" alt="UMAP of latent actions showing global intents refining into dense local manifolds." loading="lazy"/>
+          </figure>
         </div>
       </div>
     </section>
@@ -145,20 +157,7 @@
         </figure>
 
         <h3 class="res-h reveal">Real-world — TienKung 2.0 dual-arm humanoid</h3>
-        <div class="rw-grid">
-          <figure class="reveal card method-fig"><img src="static/figures/real_world_chart.png" alt="Real-world success-rate bar chart across four tasks; RCP highest overall." loading="lazy"/><figcaption>RCP dominates monolithic (ACT, DP) and multi-scale (CARP) baselines, 58% average.</figcaption></figure>
-          <div class="table-wrap reveal card">
-            <table class="data">
-              <thead><tr><th>Method</th><th>Stack Bowl</th><th>Transfer Tape</th><th>Weigh Apple</th><th>Open Drawer</th><th>Overall</th></tr></thead>
-              <tbody>
-                <tr><td>ACT</td><td>30%</td><td>30%</td><td>20%</td><td>75%</td><td>39%</td></tr>
-                <tr><td>Diffusion Policy</td><td>20%</td><td>30%</td><td>25%</td><td>50%</td><td>31%</td></tr>
-                <tr><td>CARP</td><td>35%</td><td>15%</td><td>15%</td><td>60%</td><td>31%</td></tr>
-                <tr class="rcp-row"><td>RCP (ours)</td><td><b>50%</b></td><td><b>65%</b></td><td><b>35%</b></td><td><b>80%</b></td><td><b>58%</b></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <figure class="reveal card method-fig"><img src="static/figures/real_world_chart.png" alt="Real-world success-rate bar chart across four tasks with per-method numbers; RCP highest overall." loading="lazy"/><figcaption>Per-task success rates on the dual-arm humanoid. RCP dominates monolithic (ACT, DP) and multi-scale (CARP) baselines — 50% Stack Bowl, 65% Transfer Tape, 35% Weigh Apple, 80% Open Drawer, <b>58% average</b>.</figcaption></figure>
       </div>
     </section>
     <section id="videos" class="section">
