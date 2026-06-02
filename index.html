@@ -72,7 +72,29 @@
         </ul>
       </div>
     </section>
-    <section id="method" class="section"><!-- Task 8 --></section>
+    <section id="method" class="section">
+      <div class="wrap">
+        <div class="reveal" style="text-align:center">
+          <span class="eyebrow">How RCP works</span>
+          <h2>One shared generator, applied recursively.</h2>
+          <p class="lead" style="margin:.6em auto 0">A single 6M-parameter generator is reused at every level of a hierarchical action tree — from a sparse global sketch down to dense, executable motion.</p>
+        </div>
+        <figure class="reveal method-fig">
+          <img src="static/figures/architecture.png" alt="RCP architecture: observation encoder feeds a weight-shared recursive generator that instantiates a hierarchical action tree from Level 0 to Level N." loading="lazy"/>
+          <figcaption>Observation encoding (left) conditions a weight-shared Recursive Shared Generator that instantiates actions across increasing temporal resolution (right): Level 0 sets global intent; deeper levels recursively infill motor detail.</figcaption>
+        </figure>
+        <ol class="steps">
+          <li class="card reveal"><span class="step-n">1</span><h3>Observe</h3><p>A ResNet encodes the camera image; proprioception is tokenized; self-attention fuses them into unified observation tokens.</p></li>
+          <li class="card reveal"><span class="step-n">2</span><h3>Sketch · Level 0</h3><p>The shared generator predicts a sparse set of boundary anchors — a global trajectory sketch of the whole motion.</p></li>
+          <li class="card reveal"><span class="step-n">3</span><h3>Recurse</h3><p>Each adjacent anchor pair becomes new start/end tokens; the same generator infills finer waypoints between them. Repeat to Level N.</p></li>
+          <li class="card reveal"><span class="step-n">4</span><h3>Parallel decode</h3><p>Same-level segments are conditionally independent, so they're generated in one batched pass — O(L) latency, constant-length attention.</p></li>
+        </ol>
+        <div class="reveal interp-grid">
+          <figure class="card"><img src="static/figures/hierarchy.png" alt="2D trajectory: sparse global anchors expand into a dense local path." loading="lazy"/><figcaption>Global anchors (rose) recursively expand into dense local actions (slate).</figcaption></figure>
+          <figure class="card"><img src="static/figures/latent_umap.png" alt="UMAP of latent actions showing global intents refining into dense local manifolds." loading="lazy"/><figcaption>UMAP of the latent space: global intents flow into dense local execution manifolds.</figcaption></figure>
+        </div>
+      </div>
+    </section>
     <section id="results" class="section section--tint"><!-- Task 9 --></section>
     <section id="videos" class="section"><!-- Task 10 --></section>
   </main>
