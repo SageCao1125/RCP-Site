@@ -1,0 +1,36 @@
+:root{
+  --sky-top:#a9c7e8; --sky-bot:#eef4fb;
+  --slate:#B0C4DE; --slate-light:#E2E8F0;
+  --rose:#D2C2C0; --rose-light:#ECE2E1;
+  --accent:#7D5C58; --accent-2:#B29692;
+  --cream:#F7F3F0; --ink:#1f2733; --muted:#5b6573;
+  --maxw:1080px; --radius:16px;
+  --shadow:0 10px 40px -12px rgba(31,39,51,.18);
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:-.01em}
+a{color:var(--accent);text-decoration:none}
+img{max-width:100%;display:block}
+.section{padding:96px 24px}
+.section--tint{background:linear-gradient(180deg,var(--rose-light),var(--cream))}
+.wrap{max-width:var(--maxw);margin:0 auto}
+.eyebrow{font-family:var(--sans);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--accent)}
+.section h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:.2em 0 .4em}
+.lead{font-size:1.12rem;color:var(--muted);max-width:62ch}
+.btn{display:inline-flex;align-items:center;gap:.5em;padding:.7em 1.25em;border-radius:999px;font-weight:600;font-family:var(--sans);border:1px solid transparent;transition:transform .15s ease,box-shadow .15s ease;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--accent);color:#fff;box-shadow:var(--shadow)}
+.btn--ghost{background:rgba(255,255,255,.7);color:var(--ink);border-color:rgba(31,39,51,.12);backdrop-filter:blur(6px)}
+.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(31,39,51,.05)}
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+.reveal.is-visible{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .btn:hover{transform:none}
+}
+@media (max-width:720px){ .section{padding:64px 18px} }
