@@ -105,3 +105,39 @@ if [ -f "$ROOT/workflow.mp4" ]; then
 else
   echo "  NOTE: $ROOT/workflow.mp4 not found — skipping"
 fi
+
+echo "== Simulation rollouts =="
+SRC_SIM="$ROOT/simulation"
+OUT_SIM="$HERE/static/sim"
+SIM_MAN="$OUT_SIM/manifest.json"
+SIM_GROUPS=("robotwin|RoboTwin 2.0" "maniskill|ManiSkill 3")
+if [ -d "$SRC_SIM" ]; then
+  rm -rf "$OUT_SIM"; mkdir -p "$OUT_SIM"
+  {
+    echo '{'; echo '  "groups": ['
+    gfirst=1
+    for grp in "${SIM_GROUPS[@]}"; do
+      IFS='|' read -r bench blabel <<< "$grp"; bdir="$SRC_SIM/$bench"
+      [ -d "$bdir" ] || continue
+      mkdir -p "$OUT_SIM/$bench"
+      [ $gfirst -eq 1 ] && gfirst=0 || echo ','
+      printf '    {"benchmark":"%s","label":"%s","clips":[' "$bench" "$blabel"
+      cfirst=1
+      for f in "$bdir"/*.mp4; do
+        task=$(basename "$f" .mp4); dst="$OUT_SIM/$bench/$task.mp4"; poster="$OUT_SIM/$bench/$task.jpg"
+        ffmpeg -y -v error -i "$f" -c:v libx264 -pix_fmt yuv420p -crf 24 -preset veryfast -an -movflags +faststart "$dst" </dev/null
+        dur=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$dst")
+        mid=$(awk "BEGIN{printf \"%.2f\", ${dur:-2}*0.4}")
+        ffmpeg -y -v error -ss "$mid" -i "$dst" -frames:v 1 -q:v 3 "$poster" </dev/null 2>/dev/null || ffmpeg -y -v error -i "$dst" -frames:v 1 -q:v 3 "$poster" </dev/null
+        [ $cfirst -eq 1 ] && cfirst=0 || printf ','
+        printf '{"task":"%s","src":"static/sim/%s/%s.mp4","poster":"static/sim/%s/%s.jpg"}' "$task" "$bench" "$task" "$bench" "$task"
+        echo "  sim: $bench/$task" >&2
+      done
+      printf ']}'
+    done
+    echo ''; echo '  ]'; echo '}'
+  } > "$SIM_MAN"
+  echo "  sim manifest written: $SIM_MAN"
+else
+  echo "  NOTE: $SRC_SIM not found — skipping"
+fi

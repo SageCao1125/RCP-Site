@@ -148,3 +148,12 @@ table.data tr.rcp-row td{color:var(--accent);font-weight:600}
 /* ===== How it works (explainer video) ===== */
 .how-stage{margin-top:36px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(31,39,51,.05);padding:18px}
 #how-video{width:100%;max-width:1000px;display:block;margin:0 auto;border-radius:10px;background:#fff;aspect-ratio:16/9}
+
+/* ===== Simulation rollouts gallery ===== */
+.sim-group{margin-top:26px}
+.sim-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:14px}
+.sim-card{margin:0;padding:0;overflow:hidden}
+.sim-card video{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;background:#0e1320}
+.sim-card figcaption{font-size:.82rem;color:var(--muted);text-align:center;padding:10px 8px;font-weight:500}
+@media (max-width:900px){ .sim-grid{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:620px){ .sim-grid{grid-template-columns:repeat(2,1fr)} }

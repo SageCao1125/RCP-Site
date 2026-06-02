@@ -175,7 +175,17 @@
         <figure class="reveal card method-fig"><img src="static/figures/real_world_chart.png" alt="Real-world success-rate bar chart across four tasks with per-method numbers; RCP highest overall." loading="lazy"/><figcaption>Per-task success rates on the dual-arm humanoid. RCP dominates monolithic (ACT, DP) and multi-scale (CARP) baselines — 50% Stack Bowl, 65% Transfer Tape, 35% Weigh Apple, 80% Open Drawer, <b>58% average</b>.</figcaption></figure>
       </div>
     </section>
-    <section id="videos" class="section">
+    <section id="sim" class="section">
+      <div class="wrap">
+        <div class="reveal" style="text-align:center">
+          <span class="eyebrow">Qualitative results</span>
+          <h2>Simulation rollouts.</h2>
+          <p class="lead" style="margin:.6em auto 0">RCP executing the benchmark tasks in RoboTwin 2.0 and ManiSkill 3 — the same tasks scored in the tables above.</p>
+        </div>
+        <div id="sim-gallery"></div>
+      </div>
+    </section>
+    <section id="videos" class="section section--tint">
       <div class="wrap">
         <div class="reveal" style="text-align:center">
           <span class="eyebrow">Real-world rollouts</span>
@@ -216,6 +226,7 @@
   </footer>
   <script type="module" src="js/nav.js"></script>
   <script type="module" src="js/how-video.js"></script>
+  <script type="module" src="js/sim-gallery.js"></script>
   <script type="module" src="js/reveal.js"></script>
   <script type="module" src="js/video-compare.js"></script>
 </body>
