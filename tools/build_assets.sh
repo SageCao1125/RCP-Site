@@ -96,3 +96,12 @@ echo "" >> "$MANIFEST"
 echo "  ]" >> "$MANIFEST"
 echo "}" >> "$MANIFEST"
 echo "== manifest written: $MANIFEST =="
+
+echo "== Workflow explainer video =="
+if [ -f "$ROOT/workflow.mp4" ]; then
+  ffmpeg -y -v error -i "$ROOT/workflow.mp4" -c copy -movflags +faststart "$HERE/static/workflow.mp4"
+  ffmpeg -y -v error -sseof -1 -i "$HERE/static/workflow.mp4" -frames:v 1 -q:v 3 "$HERE/static/workflow_poster.jpg"
+  echo "  workflow.mp4 + poster ready"
+else
+  echo "  NOTE: $ROOT/workflow.mp4 not found — skipping"
+fi
