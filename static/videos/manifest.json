@@ -21,10 +21,24 @@
     },
     {
       "method": "rcp",
+      "task": "stack_bowl",
+      "outcome": "fail",
+      "src": "static/videos/rcp/stack_bowl/fail_1.mp4",
+      "poster": "static/videos/posters/rcp_stack_bowl_fail.jpg"
+    },
+    {
+      "method": "rcp",
       "task": "transfer_tape",
       "outcome": "success",
       "src": "static/videos/rcp/transfer_tape/success_1.mp4",
       "poster": "static/videos/posters/rcp_transfer_tape_success.jpg"
+    },
+    {
+      "method": "rcp",
+      "task": "transfer_tape",
+      "outcome": "fail",
+      "src": "static/videos/rcp/transfer_tape/fail_1.mp4",
+      "poster": "static/videos/posters/rcp_transfer_tape_fail.jpg"
     },
     {
       "method": "rcp",
@@ -46,6 +60,13 @@
       "outcome": "success",
       "src": "static/videos/rcp/open_drawer/success_1.mp4",
       "poster": "static/videos/posters/rcp_open_drawer_success.jpg"
+    },
+    {
+      "method": "rcp",
+      "task": "open_drawer",
+      "outcome": "fail",
+      "src": "static/videos/rcp/open_drawer/fail_1.mp4",
+      "poster": "static/videos/posters/rcp_open_drawer_fail.jpg"
     },
     {
       "method": "act",

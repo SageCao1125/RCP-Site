@@ -25,26 +25,44 @@
     </div>
   </nav>
   <header id="hero">
-    <div class="clouds" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-content wrap">
-      <span class="eyebrow hero-pill">CoRL 2026</span>
+      <!-- <span class="eyebrow hero-pill">CoRL 2026</span> -->
       <h1>Unrolling the Action Manifold</h1>
       <p class="hero-sub">Visuomotor Policy Learning via Recursive Cascades</p>
-      <p class="hero-hook">A 19M-parameter policy that sketches global motion from sparse anchors, then recursively fills in the details — decoded in parallel.</p>
+      <p class="hero-hook">A 19M policy inspired by human hierarchical cognitive control that frames action generation as recursive temporal infilling directly within explicit physical space.</p>
       <div class="hero-cta">
         <a class="btn btn--primary" href="static/paper.pdf" target="_blank" rel="noopener">📄 Paper</a>
         <a class="btn btn--ghost" href="#" title="Code coming soon">⟨ ⟩ Code</a>
         <a class="hero-demo" href="#videos">▶ Watch demo</a>
       </div>
-      <p class="hero-authors">Anonymous Authors · Under review at CoRL 2026</p>
+      <div class="hero-authors">
+        <div class="author-line">
+          <span class="author-block"><a href="https://sagecao1125.github.io/">Jiahang Cao*</a>,</span>
+          <span class="author-block"><a href="https://openreview.net/profile?id=~Zhuoyang_Chen4">Zhuoyang Chen*</a>,</span>
+          <span class="author-block"><a href="https://scholar.google.com/citations?user=iqbx6RQAAAAJ&hl=en">Kun Wu</a>,</span>
+          <span class="author-block"><a href="https://yulinli0.github.io/">Yulin Li</a>,</span>
+          <span class="author-block"><a href="https://scholar.google.com/citations?user=tbb1WqQAAAAJ&hl=en">Hongliang Lu</a>,</span>
+          <span class="author-block"><a href="https://scholar.google.com/citations?user=DjQT_G0AAAAJ">Jiaxu Wang</a>,</span>
+          <span class="author-block"><a href="https://openreview.net/profile?id=~Jingkai_SUN1">Jingkai Sun</a></span>
+        </div>
+        <div class="author-line">
+          <span class="author-block"><a href="https://github.com/jonyzhang2023">Qiang Zhang</a>,</span>
+          <span class="author-block"><a href="https://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/MA-Jun/eejma">Jun Ma</a>,</span>
+          <span class="author-block"><a href="https://scholar.google.com/citations?user=jrX2FekAAAAJ">Qihao Zheng</a>,</span>
+          <span class="author-block"><a href="https://cf-song.github.io/">Chunfeng Song</a>,</span>
+          <span class="author-block"><a href="http://luoping.me/">Ping Luo</a>,</span>
+          <span class="author-block"><a href="https://andrewluo.net/">Andrew F. Luo<sup>†</sup></a></span>
+        </div>
+      </div>
       <ul class="hero-chips">
-        <li><b>19M</b> params</li><li><b>93%</b> ManiSkill</li><li><b>58%</b> real-world</li><li><b>55 Hz</b> throughput</li>
+        <li><b>19M</b> params</li><li><b>93%</b> ManiSkill</li><li><b>58%</b> real-world</li><li><b>55 Hz</b> @16-chunk</li>
       </ul>
     </div>
     <a class="scroll-cue" href="#how" aria-label="Scroll down">⌄</a>
   </header>
   <main>
-    <section id="how" class="section">
+    <!-- <section id="how" class="section">
       <div class="wrap">
         <div class="reveal" style="text-align:center">
           <span class="eyebrow">How it works</span>
@@ -59,7 +77,7 @@
           </video>
         </div>
       </div>
-    </section>
+    </section> -->
     <section id="intro" class="section">
       <div class="wrap intro-stack">
         <div class="reveal intro-lead">
@@ -77,7 +95,7 @@
       <div class="wrap">
         <div class="reveal" style="text-align:center">
           <span class="eyebrow">Results at a glance</span>
-          <h2>Small model, state-of-the-art control.</h2>
+          <h2>Small model, high-precision control.</h2>
         </div>
         <ul class="stat-grid">
           <li class="card reveal"><span class="stat-num" data-to="19" data-suffix="M">0</span><span class="stat-cap">parameters — 4–5× smaller than ACT / DP</span></li>
@@ -175,17 +193,7 @@
         <figure class="reveal card method-fig"><img src="static/figures/real_world_chart.png" alt="Real-world success-rate bar chart across four tasks with per-method numbers; RCP highest overall." loading="lazy"/><figcaption>Per-task success rates on the dual-arm humanoid. RCP dominates monolithic (ACT, DP) and multi-scale (CARP) baselines — 50% Stack Bowl, 65% Transfer Tape, 35% Weigh Apple, 80% Open Drawer, <b>58% average</b>.</figcaption></figure>
       </div>
     </section>
-    <section id="sim" class="section">
-      <div class="wrap">
-        <div class="reveal" style="text-align:center">
-          <span class="eyebrow">Qualitative results</span>
-          <h2>Simulation rollouts.</h2>
-          <p class="lead" style="margin:.6em auto 0">RCP executing the benchmark tasks in RoboTwin 2.0 and ManiSkill 3 — the same tasks scored in the tables above.</p>
-        </div>
-        <div id="sim-gallery"></div>
-      </div>
-    </section>
-    <section id="videos" class="section section--tint">
+    <section id="videos" class="section">
       <div class="wrap">
         <div class="reveal" style="text-align:center">
           <span class="eyebrow">Real-world rollouts</span>
@@ -215,11 +223,21 @@
         </div>
       </div>
     </section>
+    <section id="sim" class="section section--tint">
+      <div class="wrap">
+        <div class="reveal" style="text-align:center">
+          <span class="eyebrow">Qualitative results</span>
+          <h2>Simulation rollouts.</h2>
+          <p class="lead" style="margin:.6em auto 0">RCP executing the benchmark tasks in RoboTwin 2.0 and ManiSkill 3 — the same tasks scored in the tables above.</p>
+        </div>
+        <div id="sim-gallery"></div>
+      </div>
+    </section>
   </main>
   <footer id="footer">
     <div class="wrap">
       <p class="foot-title">Unrolling the Action Manifold — Recursive Cascade Policy</p>
-      <p class="foot-sub">Anonymous submission · Under review at CoRL 2026. Author names and code will be released upon acceptance.</p>
+      <!-- <p class="foot-sub">Anonymous submission · Under review at CoRL 2026. Author names and code will be released upon acceptance.</p> -->
       <p class="foot-meta"><a href="static/paper.pdf" target="_blank" rel="noopener">Paper (PDF)</a> · <a href="#hero">Back to top ↑</a></p>
       <p class="foot-credit">Page design inspired by the academic project-page template lineage (Nerfies).</p>
     </div>
