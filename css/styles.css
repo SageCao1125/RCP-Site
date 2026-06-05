@@ -141,7 +141,9 @@ table.data tr.rcp-row td{color:var(--accent);font-weight:600}
 @media (max-width:820px){ .vc-stage{grid-template-columns:1fr} }
 
 /* ===== Footer (Task 11) ===== */
-#footer{background:var(--ink);color:#cdd6e4;text-align:center;padding:56px 24px}
+#footer{background:var(--ink);color:#cdd6e4;text-align:center;padding:18px 24px 56px}
+.footer-visitors{display:flex;justify-content:center;align-items:center;padding:0 0 12px}
+.footer-visitors img{max-width:100%;height:auto;width:120px}
 .foot-title{font-family:var(--serif);font-size:1.15rem;color:#fff;margin:0 0 .3em}
 .foot-sub{color:#9fb0c9;max-width:60ch;margin:.2em auto 1em;font-size:.92rem}
 .foot-meta a{color:var(--rose)}
